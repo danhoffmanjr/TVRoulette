@@ -13,6 +13,7 @@
         output = document.querySelector("#output"),
         genresSelect = document.querySelector("#select-genre"),
         collection = document.querySelector("#select-collection"),
+        collectionValue,
         minPage = 1,
         maxPage = 1,
         page = '1',
@@ -23,10 +24,10 @@
         genresSelect.innerHTML = "";
       }else if(this.value == "movie"){
         queryGenres(method.get, 'genre/movie/list?api_key='+apiKey+'&language=en-US');
-        collection = 'movie';
+        collectionValue = 'movie';
       }else{
         queryGenres(method.get, 'genre/tv/list?api_key='+apiKey+'&language=en-US');
-        collection = 'tv';
+        collectionValue = 'tv';
       }
     });
 
@@ -34,7 +35,7 @@
       if(collection.value == "select"){
         alert("Select 'Movie' or 'TV Show' from the menu to play.");
       }else {
-        spinRoulette(method.get, 'discover/'+collection+'?api_key='+apiKey+'&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&with_genres='+genresSelect.value);    
+        spinRoulette(method.get, 'discover/'+collectionValue+'?api_key='+apiKey+'&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&with_genres='+genresSelect.value);    
       }
     });
 
@@ -49,7 +50,7 @@
         if (httpRequest.readyState === XMLHttpRequest.DONE) {
           if (httpRequest.status === 200) {
             var data = JSON.parse(httpRequest.responseText);
-            console.log("Dataset for " + collection + " collection in the " + genresSelect.value + " genre:");
+            console.log("Dataset for " + collectionValue + " collection in the " + genresSelect.value + " genre:");
             console.log(data);
             var newURI;
             maxPage = data.total_pages;
@@ -77,22 +78,21 @@
             var data = JSON.parse(httpRequest.responseText);
             var randomIndex = getRandomInt(0,19);
             var selection = data.results[randomIndex];
-            var detailsURI = getDetailsURL.replace("{collection}", collection);
+            var detailsURI = getDetailsURL.replace("{collection}", collectionValue);
             detailsURI = detailsURI.replace("{selection_id}", selection.id);
             console.log("Random Selection:");
             console.log(selection);
-            getFullDetails(method, detailsURI);
-            console.log("Selection Details:");
-            console.log(selectionDetails);
+            var details = getFullDetails(method, detailsURI);
+            console.log(details);
             output.innerHTML = "";
             if(selection.title == undefined){
-              output.innerHTML += '<h3>' + selectionDetails.name + '</h3>';
+              output.innerHTML += '<h3>' + selection.name + '</h3>';
             }else{
-              output.innerHTML += '<h3>' + selectionDetails.title + '</h3>';
+              output.innerHTML += '<h3>' + selection.title + '</h3>';
             }
-            output.innerHTML += '<p>' + selectionDetails.overview + '</p>' +
+            output.innerHTML += '<p>' + selection.overview + '</p>' +
                                 '<p><img src="' + imageBaseURL + selection.poster_path + '"></p>' + 
-                                '<p><a href="http://www.imdb.com/title/' + selectionDetails.imdb_id + '/">IMDB</a></p>';
+                                '<p><a href="http://www.imdb.com/title/' + selection.imdb_id + '/">IMDB</a></p>';
           } else {
             console.log('There was a problem with the request.');
           }
@@ -111,7 +111,8 @@
       httpRequest.onreadystatechange = function (){
         if (httpRequest.readyState === XMLHttpRequest.DONE) {
           if (httpRequest.status === 200) {
-            selectionDetails = JSON.parse(httpRequest.responseText);
+            return httpRequest.responseText;
+            console.log(httpRequest.responseText);
           } else {
             console.log('There was a problem with the request.');
           }
@@ -141,7 +142,7 @@
     }
 
     function createGenresSelect(genreArr){
-      console.log("GENRES Select change: List of Genres for " + collection + ":");
+      console.log("GENRES Select change: List of Genres for " + collectionValue + ":");
       console.log(genreArr);
       genresSelect.innerHTML = "";
       var option;
