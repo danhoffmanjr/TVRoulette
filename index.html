@@ -5,23 +5,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="styles.css">
-    <title>Document</title>
+    <title>Television Roulette</title>
 </head>
 <body>
-    <h1>Television Roulette</h1>
-    <h3>Let fate find you something to watch</h3>
-    <p>Oh wise TV Gods, please find me a 
-        <select id="select-collection">
-            <option value="select" selected>Select</option>
-            <option value="movie">Movie</option>
-            <option value="tv">TV Show</option>
-        </select> in the 
-        <select id="select-genre"></select> genre!
-    </p>
-    <p>
-        <button id="btn-spin" type="button">SPIN</button>
-    </p>
-    <output id="output"></output>
+    <main>
+        <h1 class="title">Television Roulette</h1>
+        <h3 class="tag-line">Let fate find you something to watch*</h3>
+        <p class="param-line">Oh wise TV Gods, please find me a
+            <select id="select-collection">
+                <option value="select" selected class="disabled">Select</option>
+                <option value="movie" class="option">Movie</option>
+                <option value="tv" class="option">TV Show</option>
+            </select> in the
+            <select id="select-genre"></select> genre!
+        </p>
+        <p class="spin">
+            <button class="btn-spin" id="btn-spin" type="button">Play</button>
+        </p>
+        <output id="output" class="output"></output>
+    </main>
+    <footer>
+        <p>*Finding a way to actually watch the selection, either for free or otherwise, is on you. We just provide a random movie or TV show. Cheers!</p>
+        <p>This product uses the TMDb API but is not endorsed or certified by TMDb.<a href="https://www.themoviedb.org/" target="_blank"><img class="tmdb-logo" src="tmdb-credit-logo.png"></a></p>
+    </footer>
     <script src="script.js"></script>
 </body>
 </html>

@@ -1,3 +1,128 @@
-.params {
-    display: none;
+@import url('https://fonts.googleapis.com/css?family=Bungee');
+@import url('https://fonts.googleapis.com/css?family=Cinzel+Decorative:700');
+@import url('https://fonts.googleapis.com/css?family=Abel|Bungee+Shade');
+
+body {
+    background-color: #ddd;
+}
+
+main {
+    width: 70%;
+    margin: 20px auto;
+}
+
+footer {
+    width: 70%;
+    margin: 20px auto;  
+    font-family: 'Abel';
+    text-align: center;
+}
+
+.title {
+    margin: 0;
+    padding: 0;
+    font-family: 'Bungee Shade';
+    text-align: center;
+    font-size: 3.5rem;
+    color: red;
+    line-height: 4rem;
+}
+
+.tag-line {
+    margin: 1rem 0 0 0;
+    padding: 0;
+    text-align: center;
+    font-family: 'Cinzel Decorative';
+    font-size: 1.25rem;
+    color:#333;
+    
+}
+
+.param-line, .spin {
+    margin: 2rem 0 0 0;
+    text-align: center;
+    font-family: 'Abel';
+    font-size: 2rem;
+}
+
+.param-line select {
+    font-family: 'Abel';
+    font-size: 2rem;
+    border: none;
+    color: #aaa;
+}
+
+.param-line select option.option { color: red; }
+.param-line select option.disabled { color: #ccc; }
+
+.btn-spin {
+    margin: none;
+    padding: 0 1rem;
+    border: none;
+    font-size: 2rem;
+    font-family: 'Bungee';
+    background-color: red;
+    color: #fff;
+    border-radius: 1rem;
+}
+
+.btn-spin:hover {
+    background-color: rgb(192, 3, 3);
+}
+
+.output {
+    display: flex;
+    margin: 2rem 0 0 0;
+    padding: 0;
+    font-family: 'Abel';
+    font-size: 1rem;
+}
+
+.poster img { width: 100%;}
+
+.details {
+    flex-basis: 60%;
+    padding: 0 1rem;
+    background-color: #ccc;
+    border-top-right-radius: 1rem;
+}
+
+.details .rating {
+    margin: 0;
+    font-size: 1.1rem;
+}
+
+.details .rating span {
+    color: red;
+    font-weight: bold;
+}
+
+.details h3 { 
+    font-size: 2.5rem;
+    margin-bottom: 0;
+}
+
+.details p, ul { font-size: 1.2rem;}
+.details ul {
+    list-style: none;
+    padding: 0;
+}
+.details ul li {
+    padding: .25rem 0;
+}
+
+.details a {
+    text-decoration: none;
+    color: red;
+}
+
+.details a:hover {
+    text-decoration: underline;
+    color: red;
+}
+
+.tmdb-logo {
+    display: block;
+    margin: 5px auto;
+    width: 100px;
 }
